@@ -1,9 +1,12 @@
 from django.conf import settings
+from wagtail import admin
 from django.conf.urls import include, url
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from django.views.static import serve
+
 
 urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
@@ -18,6 +21,14 @@ urlpatterns = [
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
+]
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include("Home.urls")),
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
 
 

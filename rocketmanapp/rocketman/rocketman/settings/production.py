@@ -6,7 +6,7 @@ from .base import *
 
 DEBUG = False
 SECRET_KEY = ''  # @todo get a key from here https://miniwebtool.com/django-secret-key-generator/
-ALLOWED_HOSTS = ['localhost', 'rocketman.com']  # @todo add your website url in here
+ALLOWED_HOSTS = ['127.0.0.1']  # @todo add your website url in here
 cwd = os.getcwd()
 CACHES = {
     "default": {
